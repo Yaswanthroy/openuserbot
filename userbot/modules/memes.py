@@ -1,32 +1,18 @@
+
 # Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# Licensed under the Raphielscape Public License, Version 1.d (the "License");
+# Licensed under the Raphielscape Public License, Version 1.c (the "License");
 # you may not use this file except in compliance with the License.
-#custom cmds by @heyworld to make it look more gayish
-#Thanks to @AbhinavShinde for strings
 """ Userbot module for having some fun with people. """
 
 from asyncio import sleep
 from random import choice, getrandbits, randint
 from re import sub
-from random import randint
-from os import execl
 import time
-from telethon import events
-from userbot import bot
-
-
-
 
 from collections import deque
 
 import requests
-import sys
-import os
-import io
-import html
-
-import json
 
 from cowpy import cow
 
@@ -379,13 +365,14 @@ FACEREACTS = [
 RUNS_STR = [
     "Runs to Thanos..",
     "Runs far, far away from earth..",
-    "Running faster than Bolt coz i'mma Abhinav !!",
+    "Running faster than Bolt coz i'mma userbot !!",
     "Runs to Marie..",
     "This Group is too cancerous to deal with.",
     "Cya bois",
     "Kys",
     "I go away",
     "I am just walking off, coz me is too fat.",
+    "I Fugged off!",
     "Will run for chocolate.",
     "I run because I really like food.",
     "Running...\nbecause dieting is not an option.",
@@ -401,15 +388,15 @@ CHASE_STR = [
     "Where do you think you're going?",
     "Huh? what? did they get away?",
     "ZZzzZZzz... Huh? what? oh, just them again, nevermind.",
-    "`Get back here!`",
-    "`Not so fast...`",
+    "Get back here!",
+    "Not so fast...",
     "Look out for the wall!",
     "Don't leave me alone with them!!",
     "You run, you die.",
-    "`Jokes on you, I'm everywhere`",
+    "Jokes on you, I'm everywhere",
     "You're gonna regret that...",
     "You could also try /kickme, I hear that's fun.",
-    "`Go bother someone else, no-one here cares.`",
+    "Go bother someone else, no-one here cares.",
     "You can run, but you can't hide.",
     "Is that all you've got?",
     "I'm behind you...",
@@ -453,6 +440,7 @@ HELLOSTR = [
     "Hi !",
     "‘Ello, gov'nor!",
     "What’s crackin’?",
+    "‘Sup, homeslice?",
     "Howdy, howdy ,howdy!",
     "Hello, who's there, I'm talking.",
     "You know who this is.",
@@ -460,118 +448,16 @@ HELLOSTR = [
     "Whaddup.",
     "Greetings and salutations!",
     "Hello, sunshine!",
-    "`Hey, howdy, hi!`",
+    "Hey, howdy, hi!",
     "What’s kickin’, little chicken?",
     "Peek-a-boo!",
     "Howdy-doody!",
-    "`Hey there, freshman!`",
-    "`I come in peace!`",
-    "`I come for peace!`",
+    "Hey there, freshman!",
+    "I come in peace!",
     "Ahoy, matey!",
-    "`Hi !`",
+    "Hiya!",
 ]
 
-PROSTR = [
-    "`You is pro sar.`",
-     "`Pros here -_- Time to Leave`",
-     "`Pros everywhere`",
-     "`Pro Pro Pro ; What a tragedy`",
-]
-
-NUBSTR = [
-    "`Haha noob trying to act pro`",
-    "`Hi Nub what'sup`",
-    "`Only i and you know that you are a noob and trying to act like pro`",
-    "`Sorry we don't appoint noobs`",
-    "`Bot rule 420 section 69 prevents me from replying to stupid nubfuks like you.`",
-]
-
-BYESTR = [
-    "`Nice talking with you`",
-    "`I've gotta go!`",
-    "`I've gotta run!`",
-    "`I've gotta split`",
-    "`I'm off!`",
-    "`Great to see you,bye`",
-    "`See you soon`",
-    "`Farewell!`",
-]
-
-GDNIGHT = [
-    "`Good night keep your dreams alive`",
-    "`Night, night, to a dear friend! May you sleep well!`",
-    "`May the night fill with stars for you. May counting every one, give you contentment!`",
-    "`Wishing you comfort, happiness, and a good night’s sleep!`",
-    "`Now relax. The day is over. You did your best. And tomorrow you’ll do better. Good Night!`",
-    "`Good night to a friend who is the best! Get your forty winks!`",
-    "`May your pillow be soft, and your rest be long! Good night, friend!`",
-    "`Let there be no troubles, dear friend! Have a Good Night!`",
-    "`Rest soundly tonight, friend!`",
-    "`Have the best night’s sleep, friend! Sleep well!`",
-    "`Have a very, good night, friend! You are wonderful!`",
-    "`Relaxation is in order for you! Good night, friend!`",
-    "`Good night. May you have sweet dreams tonight.`",
-    "`Sleep well, dear friend and have sweet dreams.`",
-    "`As we wait for a brand new day, good night and have beautiful dreams.`",
-    "`Dear friend, I wish you a night of peace and bliss. Good night.`",
-    "`Darkness cannot last forever. Keep the hope alive. Good night.`",
-    "`By hook or crook you shall have sweet dreams tonight. Have a good night, buddy!`",
-    "`Good night, my friend. I pray that the good Lord watches over you as you sleep. Sweet dreams.`",
-    "`Good night, friend! May you be filled with tranquility!`",
-    "`Wishing you a calm night, friend! I hope it is good!`",
-    "`Wishing you a night where you can recharge for tomorrow!`",
-    "`Slumber tonight, good friend, and feel well rested, tomorrow!`",
-    "`Wishing my good friend relief from a hard day’s work! Good Night!`",
-    "`Good night, friend! May you have silence for sleep!`",
-    "`Sleep tonight, friend and be well! Know that you have done your very best today, and that you will do your very best, tomorrow!`",
-    "`Friend, you do not hesitate to get things done! Take tonight to relax and do more, tomorrow!`",
-    "`Friend, I want to remind you that your strong mind has brought you peace, before. May it do that again, tonight! May you hold acknowledgment of this with you!`",
-    "`Wishing you a calm, night, friend! Hoping everything winds down to your liking and that the following day meets your standards!`",
-    "`May the darkness of the night cloak you in a sleep that is sound and good! Dear friend, may this feeling carry you through the next day!`",
-    "`Friend, may the quietude you experience tonight move you to have many more nights like it! May you find your peace and hold on to it!`",
-    "`May there be no activity for you tonight, friend! May the rest that you have coming to you arrive swiftly! May the activity that you do tomorrow match your pace and be all of your own making!`",
-    "`When the day is done, friend, may you know that you have done well! When you sleep tonight, friend, may you view all the you hope for, tomorrow!`",
-    "`When everything is brought to a standstill, friend, I hope that your thoughts are good, as you drift to sleep! May those thoughts remain with you, during all of your days!`",
-    "`Every day, you encourage me to do new things, friend! May tonight’s rest bring a new day that overflows with courage and exciting events!`",
-]
-
-GDMORNING = [
-    "`Life is full of uncertainties. But there will always be a sunrise after every sunset. Good morning!`",
-    "`It doesn’t matter how bad was your yesterday. Today, you are going to make it a good one. Wishing you a good morning!`",
-    "`If you want to gain health and beauty, you should wake up early. Good morning!`",
-    "`May this morning offer you new hope for life! May you be happy and enjoy every moment of it. Good morning!`",
-    "`May the sun shower you with blessings and prosperity in the days ahead. Good morning!`",
-    "`Every sunrise marks the rise of life over death, hope over despair and happiness over suffering. Wishing you a very enjoyable morning today!`",
-    "`Wake up and make yourself a part of this beautiful morning. A beautiful world is waiting outside your door. Have an enjoyable time!`",
-    "`Welcome this beautiful morning with a smile on your face. I hope you’ll have a great day today. Wishing you a very good morning!`",
-    "`You have been blessed with yet another day. What a wonderful way of welcoming the blessing with such a beautiful morning! Good morning to you!`",
-    "`Waking up in such a beautiful morning is a guaranty for a day that’s beyond amazing. I hope you’ll make the best of it. Good morning!`",
-    "`Nothing is more refreshing than a beautiful morning that calms your mind and gives you reasons to smile. Good morning! Wishing you a great day.`",
-    "`Another day has just started. Welcome the blessings of this beautiful morning. Rise and shine like you always do. Wishing you a wonderful morning!`",
-    "`Wake up like the sun every morning and light up the world your awesomeness. You have so many great things to achieve today. Good morning!`",
-    "`A new day has come with so many new opportunities for you. Grab them all and make the best out of your day. Here’s me wishing you a good morning!`",
-    "`The darkness of night has ended. A new sun is up there to guide you towards a life so bright and blissful. Good morning dear!`",
-    "`Wake up, have your cup of morning tea and let the morning wind freshen you up like a happiness pill. Wishing you a good morning and a good day ahead!`",
-    "`Sunrises are the best; enjoy a cup of coffee or tea with yourself because this day is yours, good morning! Have a wonderful day ahead.`",
-    "`A bad day will always have a good morning, hope all your worries are gone and everything you wish could find a place. Good morning!`",
-    "`A great end may not be decided but a good creative beginning can be planned and achieved. Good morning, have a productive day!`",
-    "`Having a sweet morning, a cup of coffee, a day with your loved ones is what sets your “Good Morning” have a nice day!`",
-    "`Anything can go wrong in the day but the morning has to be beautiful, so I am making sure your morning starts beautiful. Good morning!`",
-    "`Open your eyes with a smile, pray and thank god that you are waking up to a new beginning. Good morning!`",
-    "`Morning is not only sunrise but A Beautiful Miracle of God that defeats the darkness and spread light. Good Morning.`",
-    "`Life never gives you a second chance. So, enjoy every bit of it. Why not start with this beautiful morning. Good Morning!`",
-    "`If you want to gain health and beauty, you should wake up early. Good Morning!`",
-    "`Birds are singing sweet melodies and a gentle breeze is blowing through the trees, what a perfect morning to wake you up. Good morning!`",
-    "`This morning is so relaxing and beautiful that I really don’t want you to miss it in any way. So, wake up dear friend. A hearty good morning to you!`",
-    "`Mornings come with a blank canvas. Paint it as you like and call it a day. Wake up now and start creating your perfect day. Good morning!`",
-    "`Every morning brings you new hopes and new opportunities. Don’t miss any one of them while you’re sleeping. Good morning!`",
-    "`Start your day with solid determination and great attitude. You’re going to have a good day today. Good morning my friend!`",
-    "`Friendship is what makes life worth living. I want to thank you for being such a special friend of mine. Good morning to you!`",
-    "`A friend like you is pretty hard to come by in life. I must consider myself lucky enough to have you. Good morning. Wish you an amazing day ahead!`",
-    "`The more you count yourself as blessed, the more blessed you will be. Thank God for this beautiful morning and let friendship and love prevail this morning.`",
-    "`Wake up and sip a cup of loving friendship. Eat your heart out from a plate of hope. To top it up, a fork full of kindness and love. Enough for a happy good morning!`",
-    "`It is easy to imagine the world coming to an end. But it is difficult to imagine spending a day without my friends. Good morning.`",
-]    
 SHGS = [
     "┐(´д｀)┌",
     "┐(´～｀)┌",
@@ -635,7 +521,7 @@ SLAP_TEMPLATES = [
     "{hits} {victim} with a {item}.",
     "{hits} {victim} in the face with a {item}.",
     "{hits} {victim} around a bit with a {item}.",
-    "`{throws} a {item} at {victim}.`",
+    "{throws} a {item} at {victim}.",
     "grabs a {item} and {throws} it at {victim}'s face.",
     "{hits} a {item} at {victim}.", "{throws} a few {item} at {victim}.",
     "grabs a {item} and {throws} it in {victim}'s face.",
@@ -648,9 +534,9 @@ SLAP_TEMPLATES = [
     "holds {victim} down and repeatedly {hits} them with a {item}.",
     "prods {victim} with a {item}.",
     "picks up a {item} and {hits} {victim} with it.",
-    "`ties {victim} to a chair and {throws} a {item} at them.`",
+    "ties {victim} to a chair and {throws} a {item} at them.",
     "{hits} {victim} {where} with a {item}.",
-    "ties {victim} to a pole and whips them {where} with a {item}."
+    "ties {victim} to a pole and whips them {where} with a {item}.",
     "gave a friendly push to help {victim} learn to swim in lava.",
     "sent {victim} to /dev/null.", "sent {victim} down the memory hole.",
     "beheaded {victim}.", "threw {victim} off a building.",
@@ -720,44 +606,10 @@ HIT = [
 
 WHERE = ["in the chest", "on the head", "on the butt", "on the crotch"]
 
-GAALI = ("""Madarchod Randi ke bacche Oye bosdike madarchod
-bhen ke lode tere gand me lohe ka danda garam karke dalu
-randwe tujhetho gali ke kutte gand pe chut rakh ke katenge
-me bata raha hu tere lode pe madhu makkhi Katelode ke ando
-pe Road roller chale tu kab bathroom me muthne Jaye tho Tera
-loda ghir Jaye fir tere ando me se lizard ke bacche nikle teko
-kidnap Kare aur childporn banaye maa ke chuttad ke lode tere
-saat Johnny sins rape Kare aur jab wo teko anal de tab loda
-andar fas Jaye bkl tere jhaat pe waxing karunga me dhek lio
-fir jab tu chillayega na tab tere muh me Mai gai ka gobar
-dalunga sale tere gand ke balo pe tel laga ke jala du me
-teko Anaconda leke gand me dalu tho muh se nikle maa ke
-lode hamesha chutiyo jaisa bartav kartha he tu maa ke Dai
-chawal drugs tere gand Me dalunga thi tatti nahi nikle maa darchod
-kabhi teko Marne ka mouka mil gaya na tho bas I'll do my best to get
-that tatti outof you aur tere jaise chutio ko is duniya me jagaha bhi
-nahi maa ke lode bandarchod tere gand me chitiya Kate wo bhi bullet ants
-maadarchod samj nahi aaraha tere baap NE teko kya khake paida kiya
-Tha kesa chutiya he tu rand ke bacche teko shadi me khana khane na
-mile teko gand pe 4 thappad mare sab log aur blade se likhe I want
-anal madarchod bosdike maccharki tatte ke baal chutiye maa ke chut
-pe ghode ka Lund tere gand me jaltha hu koila Dale bhen ke lode MAA
-KI CHUT MAI TALWAR DUNGA BC CHUT FAT JAEGI AUR USME SE ITNA KHOON
-NIKLEGA MZA AJAEGA DEKHNE KA SALE MAA KE BHOSDE SE BAHR AJA FIR
-BAAP SE ZUBAN DA TERI MAA KI CHUT CHOD CHOD KE BHOSDABNADU MADARCHOD
-AUR USKE UPAR CENENT LAGADU KI TERE JESA GANDU
-INSAAN KABHI BAHR NA A SKE ESI GANDI CHUT MAI SE LODA
-LASUN MADRCHOD TERI MAA KI CHUT GASTI AMA KA CHUTIA BACHA TERI MAA KO CHOD
-CHOD K PAGAL KAR DUNGA MAA K LODY KISI SASTIII RANDII K
-BACHY TERI MAA KI CHOOT MAIN TEER MAARUN GANDU
-HARAMI TERI COLLEGE JATI BAJI KA ROAD PEY RAPE
-KARONGANDU KI OLAAD HARAM KI NASAL PAPA HUN TERA BHEN
-PESH KAR AB PAPA KO TERI MAA KKALE KUSS MAIN KISI!!!""")
-
 # ===========================================
 
 
-@register(outgoing=True, pattern=r"^.(\w+)say (.*)")
+@register(outgoing=True, pattern=r"^\.(\w+)say (.*)")
 async def univsaye(cowmsg):
     """ For .cowsay module, userbot wrapper for cow which says things. """
     arg = cowmsg.pattern_match.group(1).lower()
@@ -773,7 +625,7 @@ async def univsaye(cowmsg):
     await cowmsg.edit(f"`{cheese.milk(text).replace('`', '´')}`")
 
 
-@register(outgoing=True, pattern="^:/$", ignore_unsafe=True)
+@register(outgoing=True, pattern="^:/$")
 async def kek(keks):
     """ Check yourself ;)"""
     uio = ["/", "\\"]
@@ -782,7 +634,7 @@ async def kek(keks):
         await keks.edit(":" + uio[i % 2])
 
 
-@register(outgoing=True, pattern=r"^.coinflip (.*)")
+@register(outgoing=True, pattern=r"^\.coinflip(?: |$)(.*)")
 async def coin(event):
     r = choice(["heads", "tails"])
     input_str = event.pattern_match.group(1)
@@ -790,27 +642,23 @@ async def coin(event):
         input_str = input_str.lower()
     if r == "heads":
         if input_str == "heads":
-            await event.edit(
-                "The coin landed on: **Heads**.\nYou were correct.")
+            await event.edit("The coin landed on: **Heads**.\nAs expected.")
         elif input_str == "tails":
             await event.edit(
-                "The coin landed on: **Heads**.\nYou weren't correct, try again ..."
-            )
+                "The coin landed on: **Heads**.\nBetter luck next time?")
         else:
             await event.edit("The coin landed on: **Heads**.")
     elif r == "tails":
         if input_str == "tails":
-            await event.edit(
-                "The coin landed on: **Tails**.\nYou were correct.")
+            await event.edit("The coin landed on: **Tails**.\nAs expected.")
         elif input_str == "heads":
             await event.edit(
-                "The coin landed on: **Tails**.\nYou weren't correct, try again ..."
-            )
+                "The coin landed on: **Tails**.\nBetter luck next time?")
         else:
             await event.edit("The coin landed on: **Tails**.")
 
 
-@register(pattern="^.slap(?: |$)(.*)", outgoing=True)
+@register(pattern="^\.slap(?: |$)(.*)", outgoing=True)
 async def who(event):
     """ slaps a user, or get slapped if not a reply. """
     replied_user = await get_user_from_event(event)
@@ -852,7 +700,7 @@ async def slap(replied_user, event):
     return caption
 
 
-@register(outgoing=True, pattern="^-_-$", ignore_unsafe=True)
+@register(outgoing=True, pattern="^-_-$")
 async def lol(lel):
     """ Ok... """
     okay = "-_-"
@@ -860,12 +708,8 @@ async def lol(lel):
         okay = okay[:-1] + "_-"
         await lel.edit(okay)
 
-@register(outgoing=True, pattern="^.gaali$")
-async def bhakmadarchod(gaali):
-    """ Ek kaam kar.. GAAND MARA!!!."""
-    await gaali.edit(GAALI)
 
-@register(outgoing=True, pattern="^.(yes|no|maybe|decide)$")
+@register(outgoing=True, pattern="^\.(yes|no|maybe|decide)$")
 async def decide(event):
     decision = event.pattern_match.group(1).lower()
     message_id = event.reply_to_msg_id if event.reply_to_msg_id else None
@@ -880,7 +724,7 @@ async def decide(event):
                                     file=r["image"])
 
 
-@register(outgoing=True, pattern="^;_;$", ignore_unsafe=True)
+@register(outgoing=True, pattern="^;_;$")
 async def fun(e):
     t = ";_;"
     for j in range(10):
@@ -888,25 +732,25 @@ async def fun(e):
         await e.edit(t)
 
 
-@register(outgoing=True, pattern="^.fp$")
+@register(outgoing=True, pattern="^\.fp$")
 async def facepalm(e):
     """ Facepalm  🤦‍♂ """
     await e.edit("🤦‍♂")
 
 
-@register(outgoing=True, pattern="^.cry$")
+@register(outgoing=True, pattern="^\.cry$")
 async def cry(e):
     """ y u du dis, i cry everytime !! """
     await e.edit(choice(CRI))
 
 
-@register(outgoing=True, pattern="^.insult$")
+@register(outgoing=True, pattern="^\.insult$")
 async def insult(e):
     """ I make you cry !! """
     await e.edit(choice(INSULT_STRINGS))
 
 
-@register(outgoing=True, pattern="^.cp(?: |$)(.*)")
+@register(outgoing=True, pattern="^\.cp(?: |$)(.*)")
 async def copypasta(cp_e):
     """ Copypasta the famous meme """
     textx = await cp_e.get_reply_message()
@@ -940,7 +784,7 @@ async def copypasta(cp_e):
     await cp_e.edit(reply_text)
 
 
-@register(outgoing=True, pattern="^.vapor(?: |$)(.*)")
+@register(outgoing=True, pattern="^\.vapor(?: |$)(.*)")
 async def vapor(vpr):
     """ Vaporize everything! """
     reply_text = list()
@@ -965,7 +809,7 @@ async def vapor(vpr):
     await vpr.edit("".join(reply_text))
 
 
-@register(outgoing=True, pattern="^.str(?: |$)(.*)")
+@register(outgoing=True, pattern="^\.str(?: |$)(.*)")
 async def stretch(stret):
     """ Stretch it."""
     textx = await stret.get_reply_message()
@@ -985,7 +829,7 @@ async def stretch(stret):
     await stret.edit(reply_text)
 
 
-@register(outgoing=True, pattern="^.zal(?: |$)(.*)")
+@register(outgoing=True, pattern="^\.zal(?: |$)(.*)")
 async def zal(zgfy):
     """ Invoke the feeling of chaos. """
     reply_text = list()
@@ -1007,12 +851,12 @@ async def zal(zgfy):
             continue
 
         for _ in range(0, 3):
-            randint = randint(0, 2)
+            zalgint = randint(0, 2)
 
-            if randint == 0:
+            if zalgint == 0:
                 charac = charac.strip() + \
                     choice(ZALG_LIST[0]).strip()
-            elif randint == 1:
+            elif zalgint == 1:
                 charac = charac.strip() + \
                     choice(ZALG_LIST[1]).strip()
             else:
@@ -1024,57 +868,13 @@ async def zal(zgfy):
     await zgfy.edit("".join(reply_text))
 
 
-@register(outgoing=True, pattern="^.hi$")
+@register(outgoing=True, pattern="^\.hi$")
 async def hoi(hello):
     """ Greet everyone! """
     await hello.edit(choice(HELLOSTR))
-                      
-                      
-@register(outgoing=True, pattern="^.gn$")
-async def night(night):
-    """ Greet everyone! """
-    await night.edit(choice(GDNIGHT))
-                      
-                      
-@register(outgoing=True, pattern="^.gm$")
-async def morning(morning):
-    """ Greet everyone! """
-    await morning.edit(choice(GDMORNING))
 
 
-@register(outgoing=True, pattern="^.pro$")
-async def pero(proo):
-    """ Greet everyone! """
-    await proo.edit(choice(PROSTR))
-
-
-@register(outgoing=True, pattern="^.nub$")
-async def noob(nubdo):
-    """ Greet everyone! """
-    await nubdo.edit(choice(NUBSTR))
-                      
-@register(outgoing=True, pattern="^.bye$")
-async def bhago(bhagobc):
-    """ Greet everyone! """
-    await bhagobc.edit(choice(BYESTR))
-
-@register(outgoing=True, pattern="^.pro$")
-async def pero(proo):
-    """ Greet everyone! """
-    await proo.edit(choice(PROSTR))
-
-
-@register(outgoing=True, pattern="^.nub$")
-async def noob(nubdo):
-    """ Greet everyone! """
-    await nubdo.edit(choice(NUBSTR))
-                      
-@register(outgoing=True, pattern="^.bye$")
-async def bhago(bhagobc):
-    """ Greet everyone! """
-    await bhagobc.edit(choice(BYESTR))
-
-@register(outgoing=True, pattern="^.owo(?: |$)(.*)")
+@register(outgoing=True, pattern="^\.owo(?: |$)(.*)")
 async def faces(owo):
     """ UwU """
     textx = await owo.get_reply_message()
@@ -1097,69 +897,50 @@ async def faces(owo):
     await owo.edit(reply_text)
 
 
-@register(outgoing=True, pattern="^.react$")
+@register(outgoing=True, pattern="^\.react$")
 async def react_meme(react):
     """ Make your userbot react to everything. """
     await react.edit(choice(FACEREACTS))
 
 
-@register(outgoing=True, pattern="^.shg$")
+@register(outgoing=True, pattern="^\.shg$")
 async def shrugger(shg):
     r""" ¯\_(ツ)_/¯ """
     await shg.edit(choice(SHGS))
 
 
-@register(outgoing=True, pattern="^.chase$")
+@register(outgoing=True, pattern="^\.chase$")
 async def police(chase):
     """ Run boi run, i'm gonna catch you !! """
     await chase.edit(choice(CHASE_STR))
 
 
-@register(outgoing=True, pattern="^.run$")
+@register(outgoing=True, pattern="^\.run$")
 async def runner_lol(run):
     """ Run, run, RUNNN! """
     await run.edit(choice(RUNS_STR))
 
 
-@register(outgoing=True, pattern="^.metoo$")
+@register(outgoing=True, pattern="^\.metoo$")
 async def metoo(hahayes):
     """ Haha yes """
     await hahayes.edit(choice(METOOSTR))
 
 
-@register(outgoing=True, pattern="^.oof$")
-async def oof(e):
-    t = "oof"
-    for j in range(16):
+@register(outgoing=True, pattern="^Oof$")
+async def Oof(e):
+    t = "Oof"
+    for j in range(15):
         t = t[:-1] + "of"
         await e.edit(t)
 
-                      
-@register(outgoing=True, pattern="^.oem$")
-async def Oem(e):
-    t = "Oem"
-    for j in range(16):
-        t = t[:-1] + "em"
-        await e.edit(t)
 
-
-
-
-@register(outgoing=True, pattern="^.Oem$")
-async def Oem(e):
-    t = "Oem"
-    for j in range(16):
-        t = t[:-1] + "em"
-        await e.edit(t)
-
-
-
-@register(outgoing=True, pattern="^.10iq$")
+@register(outgoing=True, pattern="^\.10iq$")
 async def iqless(e):
-    await e.edit("you low iq idiot")
+    await e.edit("♿")
 
 
-@register(outgoing=True, pattern="^.moon$")
+@register(outgoing=True, pattern="^\.moon$")
 async def moon(event):
     deq = deque(list("🌗🌘🌑🌒🌓🌔🌕🌖"))
     try:
@@ -1171,7 +952,7 @@ async def moon(event):
         return
 
 
-@register(outgoing=True, pattern="^.clock$")
+@register(outgoing=True, pattern="^\.clock$")
 async def clock(event):
     deq = deque(list("🕙🕘🕗🕖🕕🕔🕓🕒🕑🕐🕛"))
     try:
@@ -1183,7 +964,7 @@ async def clock(event):
         return
 
 
-@register(outgoing=True, pattern="^.mock(?: |$)(.*)")
+@register(outgoing=True, pattern="^\.mock(?: |$)(.*)")
 async def spongemocktext(mock):
     """ Do it and find the real fun. """
     reply_text = list()
@@ -1207,7 +988,7 @@ async def spongemocktext(mock):
     await mock.edit("".join(reply_text))
 
 
-@register(outgoing=True, pattern="^.clap(?: |$)(.*)")
+@register(outgoing=True, pattern="^\.clap(?: |$)(.*)")
 async def claptext(memereview):
     """ Praise people! """
     textx = await memereview.get_reply_message()
@@ -1225,7 +1006,7 @@ async def claptext(memereview):
     await memereview.edit(reply_text)
 
 
-@register(outgoing=True, pattern="^.bt$")
+@register(outgoing=True, pattern="^\.bt$")
 async def bluetext(bt_e):
     """ Believe me, you will find this useful. """
     if await bt_e.get_reply_message() and bt_e.is_group:
@@ -1234,7 +1015,7 @@ async def bluetext(bt_e):
             "/ARE /YOU /A /STUPID /ANIMAL /WHICH /IS /ATTRACTED /TO /COLOURS?")
 
 
-@register(outgoing=True, pattern=r"^.f (.*)")
+@register(outgoing=True, pattern=r"^\.f (.*)")
 async def payf(event):
     paytext = event.pattern_match.group(1)
     pay = "{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}".format(
@@ -1244,7 +1025,7 @@ async def payf(event):
     await event.edit(pay)
 
 
-@register(outgoing=True, pattern="^.gi (.*)")
+@register(outgoing=True, pattern="^\.lfy (.*)")
 async def let_me_google_that_for_you(lmgtfy_q):
     textx = await lmgtfy_q.get_reply_message()
     qry = lmgtfy_q.pattern_match.group(1)
@@ -1261,60 +1042,7 @@ async def let_me_google_that_for_you(lmgtfy_q):
     \n[{query}]({r.json()['shorturl']})")
 
 
-#@register(pattern=r".scam(?: |$)(.*)", outgoing=True)
-#async def scam(event):
-   # """ Just a small command to fake chat actions for fun !! """
-   # options = [
-      #  'typing', 'contact', 'game', 'location', 'voice', 'round', 'video',
-     #   'photo', 'document', 'cancel'
-    #]
-   # input_str = event.pattern_match.group(1)
-  #  args = input_str.split()
-   # if len(args) is 0:  # Let bot decide action and time
-        #scam_action = choice(options)
-       # scam_time = randint(30, 60)
-    #elif len(args) is 1:  # User decides time/action, bot decides the other.
-        #try:
-         #   scam_action = str(args[0]).lower()
-        #    scam_time = randint(30, 60)
-       # except ValueError:
-      #      scam_action = choice(options)
-     #       scam_time = int(args[0])
-    #elif len(args) is 2:  # User decides both action and time
-      #  scam_action = str(args[0]).lower()
-     #   scam_time = int(args[1])
-    #else:
-      #  await event.edit("`Invalid Syntax !!`")
-     #   return
-    #try:
-        #if (scam_time > 0):
-       #     await event.delete()
-      #      async with event.client.action(event.chat_id, scam_action):
-     #           await sleep(scam_time)
-    #except BaseException:
-       # return
-                      
-
-
-                      
-
-      
-                   
-
-@register(outgoing=True, pattern="^.men(?: |$)(.*)")
-async def _(event):
-    if event.fwd_from:
-        return
-    if event.reply_to_msg_id:
-        input_str = event.pattern_match.group(1)
-        reply_msg = await event.get_reply_message()
-        caption = """<a href='tg://user?id={}'>{}</a>""".format(reply_msg.from_id, input_str)
-        await event.delete()
-        await bot.send_message(event.chat_id, caption, parse_mode="HTML")
-    else:
-        await event.edit("Reply to user with `.men <your text>`")
-                      
-@register(pattern=r".scam(?: |$)(.*)", outgoing=True)
+@register(pattern=r"^\.scam(?: |$)(.*)", outgoing=True)
 async def scam(event):
     """ Just a small command to fake chat actions for fun !! """
     options = [
@@ -1347,7 +1075,8 @@ async def scam(event):
     except BaseException:
         return
 
-@register(pattern=r".type(?: |$)(.*)", outgoing=True)
+
+@register(pattern=r"^\.type(?: |$)(.*)", outgoing=True)
 async def typewriter(typew):
     """ Just a small command to make your keyboard become a typewriter! """
     textx = await typew.get_reply_message()
@@ -1371,31 +1100,11 @@ async def typewriter(typew):
         await sleep(sleep_time)
         await typew.edit(old_text)
         await sleep(sleep_time)
-                      
 
-      
-                      
-
-
-@register(outgoing=True, pattern="^.lol$")
-async def lol(e): 
-      """ lol """ 
-      await e.edit("😂\n😂\n😂\n😂\n😂😂😂😂\n\n   😂😂😂\n 😂         😂\n😂           😂\n 😂         😂\n   😂😂😂\n\n😂\n😂\n😂\n😂\n😂😂😂😂")
-
-@register(outgoing=True, pattern="^.fleave$")
-async def fleave(e): 
-      """ Fake leave """ 
-      await e.edit("`Legend is leaving this chat.....!` @admin `Goodbye aren't forever..` ")
-
-
-@register(outgoing=True, pattern="^.lol$")
-async def lol(e): 
-      """ lol """ 
-      await e.edit("😂\n😂\n😂\n😂\n😂😂😂😂\n\n   😂😂😂\n 😂         😂\n😂           😂\n 😂         😂\n   😂😂😂\n\n😂\n😂\n😂\n😂\n😂😂😂😂")
 
 CMD_HELP.update({
     "memes":
-    "`.cowsay`\
+    ".cowsay\
 \nUsage: cow which says things.\
 \n\n:/\
 \nUsage: Check yourself ;)\
@@ -1403,73 +1112,59 @@ CMD_HELP.update({
 \nUsage: Ok...\
 \n\n;_;\
 \nUsage: Like `-_-` but crying.\
-\n\n`.lol`\
-\n\n`.earth`\
-\nusage:type .earth\
-\nusage: Reply .lol for funny lol text\
-\n\n`.cp`\
+\n\n.cp\
 \nUsage: Copypasta the famous meme\
-\n\n`.vapor`\
+\n\n.vapor\
 \nUsage: Vaporize everything!\
 \n\n.str\
 \nUsage: Stretch it.\
-\n\n`.10iq`\
+\n\n.10iq\
 \nUsage: You retard !!\
-\n\n`.zal`\
+\n\n.zal\
 \nUsage: Invoke the feeling of chaos.\
-\n\nOem\
-\nUsage: Oeeeem\
 \n\nOof\
 \nUsage: Ooooof\
-\n\n`.fp`\
+\n\n.fp\
 \nUsage: Facepalm :P\
-\n\n`.moon`\
+\n\n.moon\
 \nUsage: kensar moon animation.\
-\n\n`.clock`\
+\n\n.clock\
 \nUsage: kensar clock animation.\
-\n\n`.hi`\
+\n\n.hi\
 \nUsage: Greet everyone!\
-\n\n`.coinflip` <heads/tails>\
+\n\n.coinflip <heads/tails>\
 \nUsage: Flip a coin !!\
-\n\n`.owo`\
+\n\n.owo\
 \nUsage: UwU\
-\n\n`.pro` or `.nub` or `.bye`\
-\nUsage: see it yourself\
-\n\n`.react`\
+\n\n.react\
 \nUsage: Make your userbot react to everything.\
-\n\n`.slap`\
+\n\n.slap\
 \nUsage: reply to slap them with random objects !!\
-\n\n`.cry`\
+\n\n.cry\
 \nUsage: y u du dis, i cri.\
-\n\n`.shg`\
+\n\n.shg\
 \nUsage: Shrug at it !!\
-\n\n`.run`\
+\n\n.run\
 \nUsage: Let Me Run, run, RUNNN!\
-\n\n`.chase`\
+\n\n.chase\
 \nUsage: You better start running\
-\n\n`.metoo`\
+\n\n.metoo\
 \nUsage: Haha yes\
-\n\n`.gn`\
-\nUsage: goodnight friend\
-\n\n`.gm`\
-\nUsage: goodmorning friend\
-\n\n`.mock`\
+\n\n.mock\
 \nUsage: Do it and find the real fun.\
-\n\n`.clap`\
+\n\n.clap\
 \nUsage: Praise people!\
-\n\n`.f` <emoji/character>\
+\n\n.f <emoji/character>\
 \nUsage: Pay Respects.\
-\n\n`.men`\
-\nUsage: reply .men text and mention ur friends with custom text.\
-\n\n`.bt`\
+\n\n.bt\
 \nUsage: Believe me, you will find this useful.\
-\n\n`.type`\
+\n\n.type\
 \nUsage: Just a small command to make your keyboard become a typewriter!\
-\n\n`.gi` <query>\
+\n\n.lfy <query>\
 \nUsage: Let me Google that for you real quick !!\
-\n\n`.decide` [Alternates: (.yes, .no, .maybe)]\
+\n\n.decide [Alternates: (.yes, .no, .maybe)]\
 \nUsage: Make a quick decision.\
-\n\n`.scam` <action> <time>\
+\n\n.scam <action> <time>\
 \n[Available Actions: (typing, contact, game, location, voice, round, video, photo, document, cancel)]\
 \nUsage: Create fake chat actions, for fun. (Default action: typing)\
 \n\n\nThanks to 🅱️ottom🅱️ext🅱️ot (@NotAMemeBot) for some of these."

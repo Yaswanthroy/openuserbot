@@ -74,7 +74,7 @@ RUN python3 -m ensurepip \
 #
 # Clone repo and prepare working directory
 
-RUN git clone -b master https://github.com/starry69/userbot /root/userbot
+RUN git clone -b stable https://github.com/Yaswanthroy/openuserbot /root/userbot
 RUN mkdir /root/userbot/.bin
 WORKDIR /root/userbot/
 ENV PATH="/root/userbot/.bin:$PATH"

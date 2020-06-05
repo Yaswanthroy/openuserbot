@@ -135,10 +135,13 @@ async def amireallyalive(alive):
 
     await alive.edit(
                      "i am alive and running ^_^ \n"
-                     "System is Online... \n"                     f"Telethon version: {version.__version__} \n"
+                     "Waiting for some piece of Tech... \n"
+                     f"Telethon version: {version.__version__} \n"
                      f"Python: {python_version()} \n"
-                     f"Owner: {DEFAULTUSER} \n"
-                     "Userbot: Jimmy B-Rabbit"
+                     f"Owner: [Yash](tg://user?id=yourid) \n"
+		     "Codename: NØØB \n"
+                     "Userbot: TOM"
+		     "Location: IN", parse_mode='md' 
                      )
 
 @register(outgoing=True, pattern="^.aliveu")
