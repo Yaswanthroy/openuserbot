@@ -138,6 +138,7 @@ async def amireallyalive(alive):
                      "Waiting for some piece of Tech... \n"
                      f"Telethon version: {version.__version__} \n"
                      f"Python: {python_version()} \n"
+		     "------------------------------------------------ \n"
                      f"Owner: [Yash](tg://user?id=512556342) \n"
 		     "Codename: NØØB \n"
                      "Userbot: TOM"
