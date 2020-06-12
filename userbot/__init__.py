@@ -66,9 +66,13 @@ API_URL = os.environ.get("API_URL", "http://antiddos.systems")
     
 # Userbot Session String
 STRING_SESSION = os.environ.get("STRING_SESSION", None)
-
 # Logging channel/group ID configuration.
 BOTLOG_CHATID = int(os.environ.get("BOTLOG_CHATID", None))
+
+# set to True if you want to log PMs to your PM_LOGGR_BOT_API_ID
+NC_LOG_P_M_S = bool(os.environ.get("NC_LOG_P_M_S", False))
+# send .get_id in any channel to forward all your NEW PMs to this group
+PM_LOGGR_BOT_API_ID = int(os.environ.get("PM_LOGGR_BOT_API_ID", "-100"))
 
 # Userbot logging feature switch.
 BOTLOG = sb(os.environ.get("BOTLOG", "False"))
@@ -76,6 +80,7 @@ LOGSPAMMER = sb(os.environ.get("LOGSPAMMER", "False"))
 
 # Bleep Blop, this is a bot ;)
 PM_AUTO_BAN = sb(os.environ.get("PM_AUTO_BAN", "False"))
+
 
 # Heroku Credentials for updater.
 HEROKU_MEMEZ = sb(os.environ.get("HEROKU_MEMEZ", "False"))
@@ -161,7 +166,7 @@ G_DRIVE_DATA = os.environ.get("G_DRIVE_DATA", None)
 G_DRIVE_CLIENT_ID = os.environ.get("G_DRIVE_CLIENT_ID", None)
 G_DRIVE_CLIENT_SECRET = os.environ.get("G_DRIVE_CLIENT_SECRET", None)
 G_DRIVE_AUTH_TOKEN_DATA = os.environ.get("G_DRIVE_AUTH_TOKEN_DATA", None)
-G_DRIVE_FOLDER_ID = os.environ.get("G_DRIVE_FOLDER_ID", None)
+GDRIVE_FOLDER_ID = os.environ.get("G_DRIVE_FOLDER_ID", None)
 TEMP_DOWNLOAD_DIRECTORY = os.environ.get("TMP_DOWNLOAD_DIRECTORY",
                                          "./downloads")
 # Genius lyrics  API
